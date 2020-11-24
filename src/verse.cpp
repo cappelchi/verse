@@ -235,6 +235,8 @@ int main(int argc, char **argv) {
     global_lr = atof(argv[a + 1]);
   if ((a = ArgPos(const_cast<char *>("-alpha"), argc, argv)) > 0)
     ppralpha = atof(argv[a + 1]);
+  if ((a = ArgPos(const_cast<char *>("-seed"), argc, argv)) > 0)
+    x = atoi(argv[a + 1]);
   ifstream embFile(network_file, ios::in | ios::binary);
   if (embFile.is_open()) {
     char header[] = "----";
