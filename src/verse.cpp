@@ -200,6 +200,8 @@ int main(int argc, char **argv) {
   int a = 0;
   string network_file, embedding_file;
   ull x = time(nullptr);
+  if ((a = ArgPos(const_cast<char *>("-seed"), argc, argv)) > 0)
+    x = atoi(argv[a + 1]);
   for (int i = 0; i < 2; i++) {
     ull z = x += UINT64_C(0x9E3779B97F4A7C15);
     z = (z ^ z >> 30) * UINT64_C(0xBF58476D1CE4E5B9);
@@ -235,8 +237,6 @@ int main(int argc, char **argv) {
     global_lr = atof(argv[a + 1]);
   if ((a = ArgPos(const_cast<char *>("-alpha"), argc, argv)) > 0)
     ppralpha = atof(argv[a + 1]);
-  if ((a = ArgPos(const_cast<char *>("-seed"), argc, argv)) > 0)
-    x = atoi(argv[a + 1]);
   ifstream embFile(network_file, ios::in | ios::binary);
   if (embFile.is_open()) {
     char header[] = "----";
